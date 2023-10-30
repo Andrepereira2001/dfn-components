@@ -11,6 +11,10 @@ In folder `.\test` -> `dfx build` -> `dfx start --background`
 In `CandidUI.ts` l.689 `const candidCanister = this.#isLocal` make sure to have local control canister id.
 In `index.html` l.10 `<candid-ui canisterId="..." logLevel="debug" >` make sure to have the backend canister id.
 
+## Prettier
+
+`npm run format`
+
 ## Questions
 
 Funciona com **module** mas não com **actor** pq? `$(dfx cache show)/mo-doc`
