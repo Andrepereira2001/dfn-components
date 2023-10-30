@@ -1,9 +1,9 @@
-import { openDB, IDBPDatabase } from 'idb';
+import { openDB, IDBPDatabase } from "idb";
 
 type Database = IDBPDatabase<unknown>;
 type IDBValidKey = string | number | Date | BufferSource | IDBValidKey[];
-const AUTH_DB_NAME = 'candid-ui-db';
-const OBJECT_STORE_NAME = 'ic-keyval';
+const AUTH_DB_NAME = "candid-ui-db";
+const OBJECT_STORE_NAME = "ic-keyval";
 
 const _openDbStore = async (
   dbName = AUTH_DB_NAME,
@@ -12,7 +12,7 @@ const _openDbStore = async (
 ) => {
   // Clear legacy stored delegations
   return await openDB(dbName, version, {
-    upgrade: database => {
+    upgrade: (database) => {
       database.objectStoreNames;
       if (database.objectStoreNames.contains(storeName)) {
         database.clear(storeName);
@@ -39,7 +39,11 @@ async function _setValue<T>(
   return await db.put(storeName, value, key);
 }
 
-async function _removeValue(db: Database, storeName: string, key: IDBValidKey): Promise<void> {
+async function _removeValue(
+  db: Database,
+  storeName: string,
+  key: IDBValidKey,
+): Promise<void> {
   return await db.delete(storeName, key);
 }
 
@@ -64,14 +68,23 @@ export class IdbNetworkIds {
    * @param {DBCreateOptions['version']} options.version version of the database. Increment to safely upgrade
    * @constructs an {@link IdbKeyVal}
    */
-  public static async create(options?: DBCreateOptions): Promise<IdbNetworkIds> {
-    const { dbName = AUTH_DB_NAME, storeName = OBJECT_STORE_NAME, version = 1 } = options ?? {};
+  public static async create(
+    options?: DBCreateOptions,
+  ): Promise<IdbNetworkIds> {
+    const {
+      dbName = AUTH_DB_NAME,
+      storeName = OBJECT_STORE_NAME,
+      version = 1,
+    } = options ?? {};
     const db = await _openDbStore(dbName, storeName, version);
     return new IdbNetworkIds(db, storeName);
   }
 
   // Do not use - instead prefer create
-  private constructor(private _db: Database, private _storeName: string) {}
+  private constructor(
+    private _db: Database,
+    private _storeName: string,
+  ) {}
 
   /**
    * Basic setter
