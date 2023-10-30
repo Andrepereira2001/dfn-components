@@ -55,10 +55,7 @@ export class CanisterIdInput extends HTMLElement {
       select:focus,
       textarea:focus {
         outline: 2px transparent solid;
-        box-shadow:
-          0 0 0 2px #f9f9d1,
-          0 0 0 4px #396196,
-          0 0 4px 8px #f9f9d1;
+        box-shadow: 0 0 0 2px #f9f9d1, 0 0 0 4px #396196, 0 0 4px 8px #f9f9d1;
       }
     `;
     shadow.appendChild(style);
@@ -131,10 +128,7 @@ export class CanisterIdInput extends HTMLElement {
     const shadowRoot = this.shadowRoot;
     if (!shadowRoot) return;
     const form = shadowRoot.querySelector("form") as HTMLFormElement;
-    form.innerHTML = html` <label for="canister">Canister Id:</label
-      ><input id="canister" name="canister" /><button type="submit" class="btn">
-        Set
-      </button>`;
+    form.innerHTML = html` <label for="canister">Canister Id:</label><input id="canister" name="canister" /><button type="submit" class="btn">Set</button>`;
     const input = form.querySelector("input") as HTMLInputElement;
     if (this.#canisterId) {
       input.value = this.#canisterId.toText();
