@@ -26,6 +26,7 @@ export class CandidUI extends HTMLElement {
   #db?: IdbNetworkIds;
   #agent?: HttpAgent;
   #canisterId?: Principal;
+  // #isLocal = true;
   #isLocal = false;
   #host?: string;
   #title = 'Candid UI';
@@ -485,6 +486,8 @@ export class CandidUI extends HTMLElement {
         return;
       }
 
+      console.log("AQUI___________________________", candid)
+
       //   save candid file to db
       if (this.#db) {
         this.#db.set(
@@ -684,7 +687,7 @@ export class CandidUI extends HTMLElement {
       });
 
     const candidCanister = this.#isLocal
-      ? `ryjl3-tyaaa-aaaaa-aaaba-cai`
+      ? `b77ix-eeaaa-aaaaa-qaada-cai`
       : `a4gq6-oaaaa-aaaab-qaa4q-cai`;
 
     this.#log(`candidCanister: ${candidCanister}`);

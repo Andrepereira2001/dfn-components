@@ -39,7 +39,7 @@ export function renderMethod(
 
   const sig = document.createElement('div');
   sig.className = 'signature';
-  sig.innerHTML = `<b>${name}</b>: ${idlFunc.display()}`;
+  sig.innerHTML = `<b>${name}</b>: ${idlFunc.display()} <br> Manual placed description`;
   if (options?.hideMethodsIdl) sig.innerHTML = `<b>${name}</b>`;
   item.appendChild(sig);
 
